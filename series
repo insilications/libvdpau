@@ -1,3 +1,4 @@
+0001-Set-default-configuration-in-absence-of-config-file.patch
 0001-mesa_dri2-Add-missing-include-of-config.h-to-define-.patch
 0002-util.h-Make-getenv_wrapper-static-inline.patch
 0003-Fix-doc-error-on-displayable-surface-types.patch
