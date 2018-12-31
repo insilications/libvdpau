@@ -1,0 +1,36 @@
+From 52a6ea26bae0c4b2c5bace65dd7cc09c8e677bda Mon Sep 17 00:00:00 2001
+From: Aaron Plattner <aplattner@nvidia.com>
+Date: Tue, 20 Nov 2018 11:10:36 -0800
+Subject: [PATCH 5/5] Fix typos from commit
+ 53eeb07f68d483fee86ad872884aee890d5aa393
+
+Signed-off-by: Aaron Plattner <aplattner@nvidia.com>
+---
+ include/vdpau/vdpau.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/vdpau/vdpau.h b/include/vdpau/vdpau.h
+index a851ee8..17695a9 100644
+--- a/include/vdpau/vdpau.h
++++ b/include/vdpau/vdpau.h
+@@ -2701,7 +2701,7 @@ typedef VdpStatus VdpDecoderQueryProfileCapability(
+     VdpDevice                   device,
+     VdpDecoderProfile           profile,
+     /* output parameters follow */
+-    VdpDecoderCapability      capability,
++    VdpDecoderCapability        capability,
+     void *                      capability_value
+ );
+ 
+@@ -4429,7 +4429,7 @@ typedef VdpStatus VdpPresentationQueueBlockUntilSurfaceIdle(
+  * \brief The status of a surface within a presentation queue.
+  */
+ typedef enum {
+-    /** The surface is no queued or currently visible. */
++    /** The surface is not queued or currently visible. */
+     VDP_PRESENTATION_QUEUE_STATUS_IDLE,
+     /** The surface is in the queue, and not currently visible. */
+     VDP_PRESENTATION_QUEUE_STATUS_QUEUED,
+-- 
+2.20.0
+

@@ -4,7 +4,7 @@
 #
 Name     : libvdpau
 Version  : 1.1.1
-Release  : 2
+Release  : 3
 URL      : https://gitlab.freedesktop.org/vdpau/libvdpau/uploads/5635163f040f2eea59b66d0181cf664b/libvdpau-1.1.1.tar.bz2
 Source0  : https://gitlab.freedesktop.org/vdpau/libvdpau/uploads/5635163f040f2eea59b66d0181cf664b/libvdpau-1.1.1.tar.bz2
 Summary  : The Video Decode and Presentation API for UNIX
@@ -26,6 +26,11 @@ BuildRequires : pkgconfig(32xext)
 BuildRequires : pkgconfig(dri2proto)
 BuildRequires : pkgconfig(x11)
 BuildRequires : pkgconfig(xext)
+Patch1: 0001-mesa_dri2-Add-missing-include-of-config.h-to-define-.patch
+Patch2: 0002-util.h-Make-getenv_wrapper-static-inline.patch
+Patch3: 0003-Fix-doc-error-on-displayable-surface-types.patch
+Patch4: 0004-Add-new-frame-and-field-mode-chroma-types.-Add-VdpDe.patch
+Patch5: 0005-Fix-typos-from-commit-53eeb07f68d483fee86ad872884aee.patch
 
 %description
 
@@ -86,6 +91,11 @@ license components for the libvdpau package.
 
 %prep
 %setup -q -n libvdpau-1.1.1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 pushd ..
 cp -a libvdpau-1.1.1 build32
 popd
@@ -95,7 +105,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1546251628
+export SOURCE_DATE_EPOCH=1546251955
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -118,7 +128,7 @@ cd ../build32;
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1546251628
+export SOURCE_DATE_EPOCH=1546251955
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libvdpau
 cp COPYING %{buildroot}/usr/share/package-licenses/libvdpau/COPYING
