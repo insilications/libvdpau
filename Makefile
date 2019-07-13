@@ -1,5 +1,5 @@
 PKG_NAME := libvdpau
-URL = https://gitlab.freedesktop.org/vdpau/libvdpau/uploads/5635163f040f2eea59b66d0181cf664b/libvdpau-1.1.1.tar.bz2
+URL = https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/libvdpau-1.2/libvdpau-libvdpau-1.2.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
