@@ -4,10 +4,10 @@
 #
 Name     : libvdpau
 Version  : 1.3
-Release  : 7
+Release  : 8
 URL      : https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/1.3/libvdpau-1.3.tar.gz
 Source0  : https://gitlab.freedesktop.org/vdpau/libvdpau/-/archive/1.3/libvdpau-1.3.tar.gz
-Summary  : Nvidia VDPAU library
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : MIT
 Requires: libvdpau-lib = %{version}-%{release}
@@ -20,6 +20,7 @@ BuildRequires : gcc-libstdc++32
 BuildRequires : glibc-dev32
 BuildRequires : glibc-libc32
 BuildRequires : graphviz
+BuildRequires : pkg-config
 BuildRequires : pkgconfig(32dri2proto)
 BuildRequires : pkgconfig(32x11)
 BuildRequires : pkgconfig(32xext)
@@ -36,7 +37,6 @@ Summary: dev components for the libvdpau package.
 Group: Development
 Requires: libvdpau-lib = %{version}-%{release}
 Provides: libvdpau-devel = %{version}-%{release}
-Requires: libvdpau = %{version}-%{release}
 Requires: libvdpau = %{version}-%{release}
 
 %description dev
@@ -99,8 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567182031
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1568867216
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -109,15 +108,15 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 pushd ../build32
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
-export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32"
-export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32"
-export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32"
-meson --libdir=/usr/lib32 --prefix /usr --buildtype=plain   builddir
+export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
+export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
+export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
+meson --libdir=lib32 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 popd
 
