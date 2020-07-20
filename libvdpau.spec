@@ -5,9 +5,9 @@
 %define keepstatic 1
 Name     : libvdpau
 Version  : 1.4
-Release  : 1
-URL      : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.zip
-Source0  : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.zip
+Release  : 2
+URL      : /insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.zip
+Source0  : /insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.zip
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -64,7 +64,7 @@ unset http_proxy
 unset https_proxy
 unset no_proxy
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1595045434
+export SOURCE_DATE_EPOCH=1595267069
 unset LD_AS_NEEDED
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
