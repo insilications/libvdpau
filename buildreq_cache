@@ -1,9 +1,1 @@
 1.4
-doxygen
-graphviz
-pkgconfig(32dri2proto)
-pkgconfig(32x11)
-pkgconfig(32xext)
-pkgconfig(dri2proto)
-pkgconfig(x11)
-pkgconfig(xext)
