@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libvdpau
 Version  : 1.4
-Release  : 3
+Release  : 4
 URL      : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.tar.gz
 Source0  : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.tar.gz
 Summary  : No detailed summary available
@@ -65,7 +65,7 @@ unset http_proxy
 unset https_proxy
 unset no_proxy
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1598777993
+export SOURCE_DATE_EPOCH=1598778168
 unset LD_AS_NEEDED
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -101,7 +101,7 @@ export MAKEFLAGS=%{?_smp_mflags}
 ##
 %define _lto_cflags 1
 ##
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Ddefault_library=static -Ddocumentation=false  builddir
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Ddefault_library=both -Ddocumentation=false  builddir
 ## make_prepend content
 #find . -type f -name '*.json' -exec sed -i 's/\-fPIC/\-fpic/g' {} \;
 #find . -type f -name '*.ninja' -exec sed -i 's/\-fPIC/\-fpic/g' {} \;
