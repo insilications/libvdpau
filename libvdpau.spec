@@ -5,9 +5,9 @@
 %define keepstatic 1
 Name     : libvdpau
 Version  : 1.4
-Release  : 4
-URL      : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.tar.gz
-Source0  : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-1.4.tar.gz
+Release  : 5
+URL      : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-.tar.gz
+Source0  : file:///insilications/build/clearlinux/packages/libvdpau/libvdpau-.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -64,8 +64,9 @@ cd %{_builddir}/libvdpau
 unset http_proxy
 unset https_proxy
 unset no_proxy
+export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1598778168
+export SOURCE_DATE_EPOCH=1600015789
 unset LD_AS_NEEDED
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -113,6 +114,7 @@ export LANG=C.UTF-8
 unset http_proxy
 unset https_proxy
 unset no_proxy
+export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 meson test -C builddir
 
 %install
