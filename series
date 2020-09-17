@@ -4,3 +4,4 @@
 #0003-Fix-doc-error-on-displayable-surface-types.patch
 #0004-Add-new-frame-and-field-mode-chroma-types.-Add-VdpDe.patch
 #0005-Fix-typos-from-commit-53eeb07f68d483fee86ad872884aee.patch
+#0001-Remove-subdir-test-in-meson.build-for-LTO-compatibil.patch

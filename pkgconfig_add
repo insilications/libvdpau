@@ -1,8 +1,5 @@
 # This file contains additional pkgconfig build requirements that did
 # not get picked up automatically. One name per line, no whitespace.
-dri2proto
-x11
-xext
 32dri2proto
 32x11
 32xext
