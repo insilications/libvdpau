@@ -14,7 +14,6 @@ graphviz
 libva
 libva-dev
 libva-intel-driver
-libva-intel-driver-dev
 libva-lib
 libva-vdpau-driver-chromium
 libva-vdpau-driver-chromium-dev

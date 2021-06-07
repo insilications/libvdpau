@@ -1,3 +1,4 @@
 -Ddefault_library=both
 -Ddocumentation=false
--Ddri2=auto
+-Dprefix=/usr
+-Ddri2=true
