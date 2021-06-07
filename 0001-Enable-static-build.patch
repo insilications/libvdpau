@@ -1,0 +1,36 @@
+From 7464482ca9f69e342665a851b94ef57cffc9cb2d Mon Sep 17 00:00:00 2001
+From: Francisco Boni <boboniboni@gmail.com>
+Date: Mon, 7 Jun 2021 12:42:37 -0300
+Subject: [PATCH] Enable static build
+
+---
+ src/meson.build   | 2 +-
+ trace/meson.build | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/meson.build b/src/meson.build
+index 9bb253a..f549a5b 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -8,7 +8,7 @@ if use_dri2
+     vdpau_src += ['mesa_dri2.c']
+ endif
+ 
+-vdpau = shared_library('vdpau',
++vdpau = both_libraries('vdpau',
+     sources : vdpau_src,
+     include_directories : inc,
+     dependencies : [x11, libdl, threads, dri2],
+diff --git a/trace/meson.build b/trace/meson.build
+index 5381b8b..c7e1084 100644
+--- a/trace/meson.build
++++ b/trace/meson.build
+@@ -1,4 +1,4 @@
+-trace = shared_library('vdpau_trace',
++trace = both_libraries('vdpau_trace',
+     sources : 'vdpau_trace.cpp',
+     include_directories : inc,
+     dependencies : libdl,
+-- 
+2.31.1
+

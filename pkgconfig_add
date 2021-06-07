@@ -6,3 +6,12 @@
 dri2proto
 x11
 xext
+dri
+dri2proto
+dri3proto
+vdpau
+libva
+libva-drm
+libva-glx
+libva-wayland
+libva-x11
