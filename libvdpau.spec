@@ -11,7 +11,6 @@ Source0  : file:///aot/build/clearlinux/packages/libvdpau/libvdpau-v1.4.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause
-Requires: libvdpau-lib = %{version}-%{release}
 BuildRequires : Z3-dev
 BuildRequires : Z3-staticdev
 BuildRequires : buildreq-meson
@@ -168,70 +167,14 @@ BuildRequires : zstd-staticdev
 %define __strip /bin/true
 %define debug_package %{nil}
 Patch1: 0001-Set-default-configuration-in-absence-of-config-file.patch
-Patch2: 0001-Enable-static-build.patch
 
 %description
 No detailed description available
-
-%package dev
-Summary: dev components for the libvdpau package.
-Group: Development
-Requires: libvdpau-lib = %{version}-%{release}
-Provides: libvdpau-devel = %{version}-%{release}
-Requires: libvdpau = %{version}-%{release}
-
-%description dev
-dev components for the libvdpau package.
-
-
-%package dev32
-Summary: dev32 components for the libvdpau package.
-Group: Default
-Requires: libvdpau-lib32 = %{version}-%{release}
-Requires: libvdpau-dev = %{version}-%{release}
-
-%description dev32
-dev32 components for the libvdpau package.
-
-
-%package doc
-Summary: doc components for the libvdpau package.
-Group: Documentation
-
-%description doc
-doc components for the libvdpau package.
-
-
-%package lib
-Summary: lib components for the libvdpau package.
-Group: Libraries
-
-%description lib
-lib components for the libvdpau package.
-
-
-%package lib32
-Summary: lib32 components for the libvdpau package.
-Group: Default
-
-%description lib32
-lib32 components for the libvdpau package.
-
-
-%package staticdev
-Summary: staticdev components for the libvdpau package.
-Group: Default
-Requires: libvdpau-dev = %{version}-%{release}
-
-%description staticdev
-staticdev components for the libvdpau package.
-
 
 %prep
 %setup -q -n libvdpau
 cd %{_builddir}/libvdpau
 %patch1 -p1
-%patch2 -p1
 pushd ..
 cp -a libvdpau build32
 popd
@@ -246,7 +189,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623082206
+export SOURCE_DATE_EPOCH=1623239591
 unset LD_AS_NEEDED
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -343,7 +286,9 @@ export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
 export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
-meson --libdir=lib32 --prefix=/usr --buildtype=release -Ddefault_library=both   builddir
+meson --libdir=lib32 --prefix=/usr --buildtype=release -Ddefault_library=both  -Ddefault_library=both \
+-Ddocumentation=false \
+-Ddri2=true builddir
 ninja --verbose %{?_smp_mflags} -v -C builddir
 popd
 
@@ -400,41 +345,3 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
 %defattr(-,root,root,-)
-
-%files dev
-%defattr(-,root,root,-)
-/usr/include/vdpau/vdpau.h
-/usr/include/vdpau/vdpau_x11.h
-/usr/lib64/libvdpau.so
-/usr/lib64/pkgconfig/vdpau.pc
-/usr/lib64/vdpau/libvdpau_trace.so
-/usr/lib64/vdpau/libvdpau_trace.so.1
-/usr/lib64/vdpau/libvdpau_trace.so.1.0.0
-
-%files dev32
-%defattr(-,root,root,-)
-/usr/lib32/libvdpau.so
-/usr/lib32/pkgconfig/32vdpau.pc
-/usr/lib32/pkgconfig/vdpau.pc
-/usr/lib32/vdpau/libvdpau_trace.so
-/usr/lib32/vdpau/libvdpau_trace.so.1
-/usr/lib32/vdpau/libvdpau_trace.so.1.0.0
-
-%files doc
-%defattr(0644,root,root,0755)
-%doc /usr/share/doc/libvdpau/*
-
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/libvdpau.so.1
-/usr/lib64/libvdpau.so.1.0.0
-
-%files lib32
-%defattr(-,root,root,-)
-/usr/lib32/libvdpau.so.1
-/usr/lib32/libvdpau.so.1.0.0
-
-%files staticdev
-%defattr(-,root,root,-)
-/usr/lib64/libvdpau.a
-/usr/lib64/vdpau/libvdpau_trace.a
