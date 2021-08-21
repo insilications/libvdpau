@@ -227,7 +227,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1629537539
+export SOURCE_DATE_EPOCH=1629537556
 unset LD_AS_NEEDED
 ## build_prepend content
 #find . -type f -name '*.json' -exec sed -i 's/\-fPIC/\-fpic/g' {} \;
